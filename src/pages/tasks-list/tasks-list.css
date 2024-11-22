@@ -1,0 +1,11 @@
+.tasks__page {
+    padding: 1.5rem;
+}
+
+.tasks__page-header {
+   text-align: center;
+}
+
+.tasks__list-create-container {
+    display:flex;
+}
