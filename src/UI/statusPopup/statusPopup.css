@@ -1,0 +1,22 @@
+.status-popup {
+    position: absolute;
+    right: 0;
+    top: 5%;
+    z-index: 300;
+    background-color: white;
+    padding: 20px; 
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.status-popup--loading {
+    background-color: grey;
+}
+
+.status-popup--error {
+    background-color: red;
+}
+
+.status-popup--success {
+    background-color: green;
+}
