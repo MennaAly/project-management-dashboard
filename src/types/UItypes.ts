@@ -1,0 +1,1 @@
+export type popupStaus = 'loading' | 'success' | 'error';
