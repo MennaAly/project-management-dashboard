@@ -1,4 +1,5 @@
 import { useState, useRef , useMemo, useEffect} from "react";
+import useShowPopup from "../../../../hooks/useShowPopup";
 import { useCreateTaskData } from "../../../../hooks/useTaskData";
 import { priority } from "../../../../types/taskTypes";
 import { popupStaus } from "../../../../types/UItypes";
@@ -15,7 +16,7 @@ function CreateTaskForm() {
         showError: false,
     })
     const [content, setContent] = useState('')
-    const [status, setStatus] = useState<popupStaus>();
+    const {status, showStatusPopup} = useShowPopup();
     const dropdownRef = useRef<{getSelectedValue: () => priority }>();
     const priorityDropdown = useMemo(() =>{
         return(
@@ -31,13 +32,7 @@ function CreateTaskForm() {
             showStatusPopup('error')
         }
     })
-    function showStatusPopup(status: popupStaus ) {
-        setStatus(status);
-        setTimeout(() => {
-            setStatus(undefined);
-        }, 10000)
-    }
-   
+
     function validateTaskForm() {
         return name.value.trim() !== '';
     }
