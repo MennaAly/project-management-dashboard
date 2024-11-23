@@ -1,8 +1,7 @@
-import { useState, useRef , useMemo, useEffect} from "react";
+import { useState, useRef , useMemo} from "react";
 import useShowPopup from "../../../../hooks/useShowPopup";
 import { useCreateTaskData } from "../../../../hooks/useTaskData";
 import { priority } from "../../../../types/taskTypes";
-import { popupStaus } from "../../../../types/UItypes";
 import Dropdown from "../../../../UI/dropdown/dropdown";
 import Modal from "../../../../UI/modal/modal";
 import StatusPopup from "../../../../UI/statusPopup/statusPopup";
