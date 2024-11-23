@@ -17,6 +17,7 @@ function CreateTaskForm() {
     const [content, setContent] = useState('')
     const [isTaskCreated, setIsTaskCreated] = useState(false)
     const [status, setStatus] = useState<popupStaus>();
+    const [showPopup, setShowPopup] = useState(false);
     const dropdownRef = useRef<{getSelectedValue: () => priority }>();
     const priorityDropdown = useMemo(() =>{
         return(
@@ -28,12 +29,20 @@ function CreateTaskForm() {
             setIsTaskCreated(true);
             setStatus('success');
             clearTaskFormValues();
+            showStatusPopup()
         },
         onError: () => {
             setIsTaskCreated(false);
             setStatus('error');
+            showStatusPopup();
         }
     })
+    function showStatusPopup() {
+        setShowPopup(true);
+        setTimeout(() => {
+            setShowPopup(false)
+        }, 10000)
+    }
    
     function validateTaskForm() {
         return name.value.trim() !== '';
@@ -88,24 +97,26 @@ function CreateTaskForm() {
     }
 
     return(
-        <Modal controllerBtnTitle="Create" 
-        title="Create New Task" 
-        submit={handleCreateTask}
-        showSubmit={true} 
-        modalTitleClass='create-form__modal-title'
-        isLoading={isLoading}
-        isSuccess={isTaskCreated}>
-            <form className="create-task-form">
-                <label className="create-task-form__label">Task Name *</label>
-                <input className="create-task-form__input" value={name.value} onChange={(e) => updateNameProperty('value', e.target.value)}/>
-                {name.showError? <p>{name.errorMessage}</p> : null}
-                <label className="create-task-form__label">Task Priority</label>
-                {priorityDropdown}
-                <label className="create-task-form__label">Task Content</label>
-                <input className="create-task-form__input" value={content} onChange={(e) => setContent(e.target.value)}/>    
-            </form> 
-            {status ? <StatusPopup status={status} /> : null}
-        </Modal>
+        <> 
+            <Modal controllerBtnTitle="Create" 
+                title="Create New Task" 
+                submit={handleCreateTask}
+                showSubmit={true} 
+                modalTitleClass='create-form__modal-title'
+                isLoading={isLoading}
+                isSuccess={isTaskCreated}>
+                    <form className="create-task-form">
+                        <label className="create-task-form__label">Task Name *</label>
+                        <input className="create-task-form__input" value={name.value} onChange={(e) => updateNameProperty('value', e.target.value)}/>
+                        {name.showError? <p>{name.errorMessage}</p> : null}
+                        <label className="create-task-form__label">Task Priority</label>
+                        {priorityDropdown}
+                        <label className="create-task-form__label">Task Content</label>
+                        <input className="create-task-form__input" value={content} onChange={(e) => setContent(e.target.value)}/>    
+                    </form> 
+            </Modal>
+            {showPopup && status ? <StatusPopup status={status} /> : null}
+        </>
     )
 }
 
