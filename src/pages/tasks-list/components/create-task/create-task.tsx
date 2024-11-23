@@ -15,9 +15,7 @@ function CreateTaskForm() {
         showError: false,
     })
     const [content, setContent] = useState('')
-    const [isTaskCreated, setIsTaskCreated] = useState(false)
     const [status, setStatus] = useState<popupStaus>();
-    const [showPopup, setShowPopup] = useState(false);
     const dropdownRef = useRef<{getSelectedValue: () => priority }>();
     const priorityDropdown = useMemo(() =>{
         return(
@@ -26,21 +24,17 @@ function CreateTaskForm() {
     }, [])
     const {mutate: createTask, isLoading} = useCreateTaskData({
         onSuccess: () => {
-            setIsTaskCreated(true);
-            setStatus('success');
+            showStatusPopup('success')
             clearTaskFormValues();
-            showStatusPopup()
         },
         onError: () => {
-            setIsTaskCreated(false);
-            setStatus('error');
-            showStatusPopup();
+            showStatusPopup('error')
         }
     })
-    function showStatusPopup() {
-        setShowPopup(true);
+    function showStatusPopup(status: popupStaus ) {
+        setStatus(status);
         setTimeout(() => {
-            setShowPopup(false)
+            setStatus(undefined);
         }, 10000)
     }
    
@@ -103,8 +97,7 @@ function CreateTaskForm() {
                 submit={handleCreateTask}
                 showSubmit={true} 
                 modalTitleClass='create-form__modal-title'
-                isLoading={isLoading}
-                isSuccess={isTaskCreated}>
+                isLoading={isLoading}>
                     <form className="create-task-form">
                         <label className="create-task-form__label">Task Name *</label>
                         <input className="create-task-form__input" value={name.value} onChange={(e) => updateNameProperty('value', e.target.value)}/>
@@ -115,7 +108,7 @@ function CreateTaskForm() {
                         <input className="create-task-form__input" value={content} onChange={(e) => setContent(e.target.value)}/>    
                     </form> 
             </Modal>
-            {showPopup && status ? <StatusPopup status={status} /> : null}
+            {status ? <StatusPopup status={status} /> : null}
         </>
     )
 }
