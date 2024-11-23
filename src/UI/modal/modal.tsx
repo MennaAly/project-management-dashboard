@@ -1,23 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createPortal } from 'react-dom';
 import { ModalProps } from "../../interfaces/UI";
 import Spinner from "../spinner/spinner";
 import "./modal.css";
 
-function Modal({controllerBtnTitle, title, children, showSubmit = false, submit , modalTitleClass, isLoading, isSuccess}: ModalProps) {
+function Modal({controllerBtnTitle, title, children, showSubmit = false, submit , modalTitleClass, isLoading}: ModalProps) {
     const [showModal, setShowModal] = useState(false);
-    const [isSubmit, setIsSubmit] = useState(false);
     const submitButtonContent = isLoading ? <Spinner /> : 'Submit';
     function submitModal() {
-        setIsSubmit(true);
+        setShowModal(false);
         submit();
     }
-
-    useEffect(() => {
-        if(isSubmit) {
-            setShowModal(!isSuccess)
-        }
-    },[isSuccess]);
 
     return createPortal(
         (<>
