@@ -8,7 +8,6 @@ export interface ModalProps {
     submit: () => void,
     modalTitleClass?: string; 
     isLoading?: boolean;
-    isSuccess?: boolean;
 }
 
 export interface IStatusPopupProps {
