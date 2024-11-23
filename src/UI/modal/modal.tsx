@@ -22,7 +22,6 @@ function Modal({controllerBtnTitle, title, children, showSubmit = false, submit 
     return createPortal(
         (<>
             <button onClick={() => setShowModal(true)}> {controllerBtnTitle} </button>
-            <p>the show modal {showModal}</p>
             {showModal ? <><div className="overlay"></div><article className="modal">
                     <div className="modal-content">
                         <h1 className={modalTitleClass ? modalTitleClass: ''}>{title}</h1>
