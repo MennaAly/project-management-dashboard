@@ -4,7 +4,10 @@ import { ModalProps } from "../../interfaces/UI";
 import Spinner from "../spinner/spinner";
 import "./modal.css";
 
-function Modal({controllerBtnTitle, title, children, showSubmit = false, submit , modalTitleClass, isLoading}: ModalProps) {
+function Modal({controllerBtnProperties, modalTitleProperties, children, submitProperties}: ModalProps) {
+    const {title : controllerBtnTitle, icon: controlllerBtnIcon, class: controllerBtnClass} = controllerBtnProperties;
+    const {title: modalTitle, class: modalTitleClass} = modalTitleProperties;
+    const {showSubmitButton, submit, isLoading} = submitProperties;
     const [showModal, setShowModal] = useState(false);
     const submitButtonContent = isLoading ? <Spinner /> : 'Submit';
     function submitModal() {
@@ -14,14 +17,17 @@ function Modal({controllerBtnTitle, title, children, showSubmit = false, submit 
 
     return createPortal(
         (<>
-            <button onClick={() => setShowModal(true)}> {controllerBtnTitle} </button>
+            <button className={controllerBtnClass} onClick={() => setShowModal(true)}>
+                {controlllerBtnIcon}
+                {controllerBtnTitle} 
+            </button>
             {showModal ? <><div className="overlay"></div><article className="modal">
                     <div className="modal-content">
-                        <h1 className={modalTitleClass ? modalTitleClass: ''}>{title}</h1>
+                        <h1 className={modalTitleClass}>{modalTitle}</h1>
                         {children}
                         <div className="modal__call-to-actions-container">
                             <button onClick={() => setShowModal(false)}>close</button>
-                            {showSubmit ? <button onClick={() => submitModal()} disabled={isLoading}>{submitButtonContent}</button> : null}
+                            {showSubmitButton ? <button onClick={() => submitModal()} disabled={isLoading}>{submitButtonContent}</button> : null}
                         </div>
                     </div>
                 </article></> : null}
