@@ -22,7 +22,7 @@ h1, section{
 .primary-button {
   align-items: center;
   appearance: button;
-  background-color: #0276FF;
+  background-color: #365eff;
   border-radius: 8px;
   border-style: none;
   box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
@@ -41,9 +41,9 @@ h1, section{
 }
 
 .primary-button:active {
-  background-color: #006AE8;
+  background-color: #4a71ff;
 }
 
 .primary-button:hover {
-  background-color: #1C84FF;
+  background-color: #4a71ff;
 }
