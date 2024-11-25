@@ -108,13 +108,13 @@ function CreateTaskForm() {
                 modalTitleProperties={modalTitleProperties}
                 submitProperties={submitProperties}>
                     <form className="create-task-form">
-                        <label className="create-task-form__label">Task Name *</label>
-                        <input className="create-task-form__input" value={name.value} onChange={(e) => updateNameProperty('value', e.target.value)}/>
+                        <label className="create-task-form__label">Name *</label>
+                        <input className="input-field" value={name.value} onChange={(e) => updateNameProperty('value', e.target.value)}/>
                         {name.showError? <p>{name.errorMessage}</p> : null}
-                        <label className="create-task-form__label">Task Priority</label>
+                        <label className="create-task-form__label">Priority</label>
                         {priorityDropdown}
-                        <label className="create-task-form__label">Task Content</label>
-                        <input className="create-task-form__input" value={content} onChange={(e) => setContent(e.target.value)}/>    
+                        <label className="create-task-form__label">Description</label>
+                        <textarea className="input-field create-task-form__description" value={content} onChange={(e) => setContent(e.target.value)}/>    
                     </form> 
             </Modal>
             {status ? <StatusPopup status={status} /> : null}
