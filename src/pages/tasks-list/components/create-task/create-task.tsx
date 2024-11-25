@@ -3,10 +3,22 @@ import useShowPopup from "../../../../hooks/useShowPopup";
 import { useCreateTaskData } from "../../../../hooks/useTaskData";
 import { priority } from "../../../../types/taskTypes";
 import Dropdown from "../../../../UI/dropdown/dropdown";
+import PlusIcon from "../../../../UI/icons/plus/plus";
 import Modal from "../../../../UI/modal/modal";
 import StatusPopup from "../../../../UI/statusPopup/statusPopup";
 import { priorityDropdownOptions } from "../../constants/constants";
 import "./create-task.css";
+
+const createFormButtonProps = {
+    title: 'Add task',
+    icon: <PlusIcon size={16} />,
+    class: "primary-button primary-button__with-icon"
+};
+
+const modalTitleProperties = {
+    title: 'Create Task',
+    class: 'create-form__modal-title'
+}
 
 function CreateTaskForm() {
     const [name, setName] = useState({
@@ -31,6 +43,11 @@ function CreateTaskForm() {
             showStatusPopup('error')
         }
     })
+    const submitProperties = {
+        submit: handleCreateTask,
+        isLoading: isLoading,
+        showSubmitButton: true
+    }
 
     function validateTaskForm() {
         return name.value.trim() !== '';
@@ -86,12 +103,10 @@ function CreateTaskForm() {
 
     return(
         <> 
-            <Modal controllerBtnTitle="Create" 
-                title="Create New Task" 
-                submit={handleCreateTask}
-                showSubmit={true} 
-                modalTitleClass='create-form__modal-title'
-                isLoading={isLoading}>
+            <Modal 
+                controllerBtnProperties={createFormButtonProps}
+                modalTitleProperties={modalTitleProperties}
+                submitProperties={submitProperties}>
                     <form className="create-task-form">
                         <label className="create-task-form__label">Task Name *</label>
                         <input className="create-task-form__input" value={name.value} onChange={(e) => updateNameProperty('value', e.target.value)}/>
