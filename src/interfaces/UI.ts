@@ -1,13 +1,10 @@
-import { popupStaus } from "../types/UItypes";
+import { modalButtonProperties, modalTitleProperties, popupStaus, submitModalProperties } from "../types/UItypes";
 
 export interface ModalProps {
-    controllerBtnTitle: string,
-    title: string,
+    controllerBtnProperties: modalButtonProperties,
+    modalTitleProperties: modalTitleProperties,
+    submitProperties: submitModalProperties,
     children: React.ReactNode, 
-    showSubmit: boolean,
-    submit: () => void,
-    modalTitleClass?: string; 
-    isLoading?: boolean;
 }
 
 export interface IStatusPopupProps {
