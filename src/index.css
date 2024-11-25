@@ -47,3 +47,16 @@ h1, section{
 .primary-button:hover {
   background-color: #4a71ff;
 }
+
+/*----------------- input ------------------------*/
+.input-field {
+  border: 1px solid #f3f4f6;
+  border-radius: 4px;
+  padding: 8px 16px;
+  background-color: #fff;
+}
+
+/*----------------- width & height ------------------------*/
+.full-width {
+  width: 100%;
+}
