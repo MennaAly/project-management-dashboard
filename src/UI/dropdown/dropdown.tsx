@@ -15,7 +15,6 @@ const Dropdown = forwardRef(({options} : DropdownComponentProps, ref) => {
     }));
 
     const handleChange = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-        console.log(e.currentTarget.textContent);
         if(e.currentTarget.textContent) {
             setSelectedValue(e.currentTarget.textContent)
         }
