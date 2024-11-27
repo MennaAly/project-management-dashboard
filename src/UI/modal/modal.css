@@ -23,6 +23,6 @@
 
 .modal__call-to-actions-container {
     display: flex;
-    gap: 0.5rem;
-    justify-content: end;
+    padding-top: 0.5rem;
+    justify-content: space-between;
 }

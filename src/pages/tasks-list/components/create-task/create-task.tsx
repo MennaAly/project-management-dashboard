@@ -12,7 +12,7 @@ import "./create-task.css";
 const createFormButtonProps = {
     title: 'Add task',
     icon: <PlusIcon size={16} />,
-    class: "primary-button primary-button__with-icon"
+    class: "button primary-button primary-button__with-icon"
 };
 
 const modalTitleProperties = {

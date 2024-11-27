@@ -26,8 +26,8 @@ function Modal({controllerBtnProperties, modalTitleProperties, children, submitP
                         <h1 className={modalTitleClass}>{modalTitle}</h1>
                         {children}
                         <div className="modal__call-to-actions-container">
-                            <button onClick={() => setShowModal(false)}>close</button>
-                            {showSubmitButton ? <button onClick={() => submitModal()} disabled={isLoading}>{submitButtonContent}</button> : null}
+                            <button className="button secondary-button" onClick={() => setShowModal(false)}>Close</button>
+                            {showSubmitButton ? <button className="button primary-button" onClick={() => submitModal()} disabled={isLoading}>{submitButtonContent}</button> : null}
                         </div>
                     </div>
                 </article></> : null}
