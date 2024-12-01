@@ -6,9 +6,9 @@ function StatusPopup({status, message} : IStatusPopupProps) {
     const currentStatus = popupStatusProperties[status];    
 
     return createPortal((
-        <section className={`status-popup ${currentStatus.className}`}>
+        <dialog className={`status-popup ${currentStatus.className}`}>
             {message ? message: currentStatus.message}
-        </section>
+        </dialog>
     ), document.getElementById('status-popup') as HTMLElement)
 }
 export default StatusPopup;

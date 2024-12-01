@@ -21,14 +21,8 @@
     z-index: 200; /* Below the modal but above other content */
 }
 
-
-.modal-content {
-    width: 80%;
-    height: 60%;
-}
-
 .modal__call-to-actions-container {
     display: flex;
-    gap: 0.5rem;
-    justify-content: end;
+    padding-top: 0.5rem;
+    justify-content: space-between;
 }
